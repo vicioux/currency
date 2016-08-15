@@ -1,0 +1,12 @@
+PODS:
+  - HanekeSwift (0.10.1)
+
+DEPENDENCIES:
+  - HanekeSwift
+
+SPEC CHECKSUMS:
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+
+PODFILE CHECKSUM: 0ffe0db0daeb2ddc1b449ce03a9295e73b65b5e6
+
+COCOAPODS: 1.1.0.beta.1
