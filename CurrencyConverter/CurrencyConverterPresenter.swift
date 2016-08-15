@@ -23,7 +23,6 @@ protocol CurrencyConverterPresenterInput {
     func presentMessage(message: String?)
 }
 
-
 class ConsultaPersonalPresenter : CurrencyConverterPresenterInput {
     
     var output: CurrencyConverterPresenterOutput!
