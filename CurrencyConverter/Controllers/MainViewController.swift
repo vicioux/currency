@@ -66,7 +66,6 @@ class MainViewController: UIViewController, MainViewControllerInput {
     
     func setCurrencies(currencies: [Currency]) {
         self.currenciesList = currencies
-        //self.output.convertCurrency(self.currenciesList, value: 5)
     }
     
     func showConversion(conversion: [CurrencyDomain]) {
