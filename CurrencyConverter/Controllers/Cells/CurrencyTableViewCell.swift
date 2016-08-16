@@ -26,8 +26,9 @@ class CurrencyTableViewCell: UITableViewCell {
     }
     
     func updateUI() {
+        flagName.text = currency?.flag
         currencyKeyName.text = currency!.keyName
-        currencyName.text = currency!.keyName
+        currencyName.text = currency!.name
         currencyValue.text = currency!.rate
     }
 }

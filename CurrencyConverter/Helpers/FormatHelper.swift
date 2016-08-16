@@ -17,4 +17,13 @@ class FormatHelper {
         return formatter.stringFromNumber(amount)!
     }
     
+    class func emojiFlag(countryCode countryCode: String) -> String {
+        var string = ""
+        var country = countryCode.uppercaseString
+        for uS in country.unicodeScalars {
+            string.append(UnicodeScalar(127397 + uS.value))
+        }
+        return string
+    }
+    
 }

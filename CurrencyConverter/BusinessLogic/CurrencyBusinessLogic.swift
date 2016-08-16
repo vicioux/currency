@@ -26,6 +26,13 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
     var output: CurrencyBusinessLogicOutput!
     var repositoryLocator = RepositoryLocator().currencyRepository()
     
+    struct CurrencyInfo
+    {
+        var name: String?
+        var flag: String?
+        var symbol: String?
+    }
+    
     func loadCurrencies() {
         repositoryLocator.findCurrencies { (success, fail) in
             if (fail != nil) {
@@ -39,26 +46,30 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
     func convert(currencies: [Currency]?, value: Int?) {
         var convertedCurrencies = [CurrencyDomain]()
         guard let currencies = currencies else { return }
+        guard let value = value else { return }
         
         for currency in currencies {
-            convertedCurrencies.append(CurrencyDomain.init(keyName: currency.keyName, rate: getCurrencyConversion(currency, value: Double(value!))))
+            let currencyValue = getCurrencyConversion(currency, value: Double(value))
+            let currencyInfo = getCurrencyInfoBy(currency.keyName!)
+            
+            let currencyDomain = CurrencyDomain(name: currencyInfo.name ,keyName: currency.keyName, rate: currencyValue, flag: currencyInfo.flag)
+            convertedCurrencies.append(currencyDomain)
         }
         
         self.output.presentConversion(convertedCurrencies)
-        
     }
     
     func getCurrencyConversion(currency: Currency,value: Double?) -> String {
-        return FormatHelper.formattedCurrency(currency.rate! * Double(value ?? 0), symbol: setSymbol(currency.keyName!))
+        return FormatHelper.formattedCurrency(currency.rate! * Double(value ?? 0), symbol: getCurrencyInfoBy(currency.keyName!).symbol!)
     }
     
-    func setSymbol(keyName: String) -> String {
-        switch keyName {
-        case CurrencyEnum.GBP.rawValue: return "£"
-        case CurrencyEnum.EUR.rawValue: return "€"
-        case CurrencyEnum.JPY.rawValue: return "¥"
-        case CurrencyEnum.BRL.rawValue: return "R$"
-        default : return "$"
+    func getCurrencyInfoBy(key: String) -> CurrencyInfo {
+        switch key {
+        case CurrencyEnum.GBP.rawValue: return CurrencyInfo(name: "Pound sterling", flag: FormatHelper.emojiFlag(countryCode: "gb"), symbol: "£")
+        case CurrencyEnum.EUR.rawValue: return CurrencyInfo(name: "Euro", flag: FormatHelper.emojiFlag(countryCode: "eu"), symbol: "€")
+        case CurrencyEnum.JPY.rawValue: return CurrencyInfo(name: "Japanese Yen", flag: FormatHelper.emojiFlag(countryCode: "jp"), symbol: "¥")
+        case CurrencyEnum.BRL.rawValue: return CurrencyInfo(name: "Brazilian Real", flag: FormatHelper.emojiFlag(countryCode: "br"), symbol: "R$")
+        default : return CurrencyInfo(name: "US Dollar", flag: FormatHelper.emojiFlag(countryCode: "us"), symbol: "$")
         }
     }
     

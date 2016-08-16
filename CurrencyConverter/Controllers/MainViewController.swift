@@ -31,7 +31,12 @@ class MainViewController: UIViewController, MainViewControllerInput {
         static let currencyTableViewCell = "CurrencyTableViewCell"
     }
     
-    @IBOutlet weak var currencyTextField: UITextField!
+    @IBOutlet weak var currencyTextField: UITextField! {
+        didSet {
+            currencyTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+        }
+    }
+    
     @IBOutlet weak var currencyTableView: UITableView!
     
     var output: CurrencyBussinesLogic!
@@ -72,6 +77,12 @@ class MainViewController: UIViewController, MainViewControllerInput {
     func showMessage(message: String) {
         print(message)
     }
+    
+    func textFieldDidChange(textField: UITextField) {
+       let currentText = textField.text!
+       let value = Int(currentText) ?? 0
+       self.output.convert(self.currenciesList, value: value)
+    }
 }
 
 
@@ -89,9 +100,7 @@ extension MainViewController: UITextFieldDelegate {
             return false
         }
         
-        let value = Int(currentText) ?? 0
-        self.output.convert(self.currenciesList, value: value)
-        return newLength <= 16
+        return newLength <= 9
     }
 }
 
@@ -112,10 +121,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: CurrencyTableViewCell = tableView.dequeueReusableCellWithIdentifier(Identifier.currencyTableViewCell) as! CurrencyTableViewCell
         cell.currency = self.convertedCurrencies![indexPath.row]
         return cell
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 83
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
