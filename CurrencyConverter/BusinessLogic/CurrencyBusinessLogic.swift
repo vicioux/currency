@@ -59,7 +59,7 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
         self.output.presentConversion(convertedCurrencies)
     }
     
-    func getCurrencyConversion(currency: Currency,value: Double?) -> String {
+    func getCurrencyConversion(currency: Currency, value: Double?) -> String {
         return FormatHelper.formattedCurrency(currency.rate! * Double(value ?? 0), symbol: getCurrencyInfoBy(currency.keyName!).symbol!)
     }
     
