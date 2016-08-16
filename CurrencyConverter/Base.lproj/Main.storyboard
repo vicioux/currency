@@ -21,30 +21,42 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ds5-gF-vGJ" userLabel="TopView">
                                 <rect key="frame" x="0.0" y="20" width="600" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kkv-ZZ-Crx">
-                                        <rect key="frame" x="391" y="15" width="140" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Set a Value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kkv-ZZ-Crx">
+                                        <rect key="frame" x="397" y="15" width="186" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="186" id="VKK-u3-sBp"/>
+                                            <constraint firstAttribute="height" constant="30" id="br4-jr-o4j"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="d66-qN-kEe"/>
+                                        </connections>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US Dollar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIP-QK-iRP">
+                                        <rect key="frame" x="315" y="19" width="74" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="qhX-gB-5Zn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="HIP-QK-iRP" firstAttribute="centerY" secondItem="ds5-gF-vGJ" secondAttribute="centerY" id="3p6-pW-iU2"/>
+                                    <constraint firstItem="Kkv-ZZ-Crx" firstAttribute="centerY" secondItem="ds5-gF-vGJ" secondAttribute="centerY" id="BlO-xG-GfR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kkv-ZZ-Crx" secondAttribute="trailing" constant="17" id="rgE-Tb-V9j"/>
+                                    <constraint firstItem="Kkv-ZZ-Crx" firstAttribute="leading" secondItem="HIP-QK-iRP" secondAttribute="trailing" constant="8" id="yfh-Go-SnL"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhP-sH-i31" userLabel="MainContentView">
                                 <rect key="frame" x="0.0" y="80" width="600" height="540"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Z0-xD-FT6">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Z0-xD-FT6">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="QDu-1h-rl4">
-                                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QDu-1h-rl4" id="I7g-xr-UQi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="Psl-tX-mZI"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="YHQ-iC-S9k"/>
@@ -74,7 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="currencyTableView" destination="4Z0-xD-FT6" id="Z6d-Tq-jCv"/>
-                        <outlet property="inputTextField" destination="Kkv-ZZ-Crx" id="Msy-RH-j7z"/>
+                        <outlet property="currencyTextField" destination="Kkv-ZZ-Crx" id="uRP-AN-umx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

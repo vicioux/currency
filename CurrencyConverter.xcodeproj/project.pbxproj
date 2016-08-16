@@ -28,6 +28,7 @@
 		60CD67E11D6137C8003BE9CA /* FormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD67E01D6137C8003BE9CA /* FormatHelper.swift */; };
 		60CD67E81D628620003BE9CA /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD67E71D628620003BE9CA /* CurrencyTableViewCell.swift */; };
 		60CD67ED1D6286EB003BE9CA /* CurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CD67EC1D6286EB003BE9CA /* CurrencyTableViewCell.xib */; };
+		60CD67EF1D6295E3003BE9CA /* String+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD67EE1D6295E3003BE9CA /* String+Validations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		60CD67E01D6137C8003BE9CA /* FormatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormatHelper.swift; path = Helpers/FormatHelper.swift; sourceTree = "<group>"; };
 		60CD67E71D628620003BE9CA /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyTableViewCell.swift; path = Controllers/Cells/CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		60CD67EC1D6286EB003BE9CA /* CurrencyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrencyTableViewCell.xib; path = Base.lproj/Cells/CurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		60CD67EE1D6295E3003BE9CA /* String+Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Validations.swift"; path = "Helpers/String+Validations.swift"; sourceTree = "<group>"; };
 		B8D466536C3F12DF56118418 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				60CD67E01D6137C8003BE9CA /* FormatHelper.swift */,
+				60CD67EE1D6295E3003BE9CA /* String+Validations.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				60CD67CB1D610C4A003BE9CA /* RepositoryLocator.swift in Sources */,
 				2F29F3661D627036001C3B5B /* CurrencyConverterBusinessLogic.swift in Sources */,
 				60CD67C81D6108D6003BE9CA /* MainViewController.swift in Sources */,
+				60CD67EF1D6295E3003BE9CA /* String+Validations.swift in Sources */,
 				60CD67DC1D611C76003BE9CA /* Constants.swift in Sources */,
 				2F29F36D1D6279B8001C3B5B /* CurrencyDomain.swift in Sources */,
 				2F29F3631D6269E1001C3B5B /* CurrencyConverterConfigurator.swift in Sources */,

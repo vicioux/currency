@@ -15,11 +15,19 @@ class CurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyValue: UILabel!
     @IBOutlet weak var currencyName: UILabel!
     
+    var currency: CurrencyDomain? {
+        didSet{
+            updateUI()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func set(<#parameters#>) -> <#return type#> {
-        <#function body#>
+    func updateUI() {
+        currencyKeyName.text = currency!.keyName
+        currencyName.text = currency!.keyName
+        currencyValue.text = currency!.rate
     }
 }
