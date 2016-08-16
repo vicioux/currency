@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-extension MainViewController: CurrencyConverterPresenterOutput {
+extension MainViewController: CurrencyPresenterOutput {
 
 }
 
-extension CurrencyConverterBussinesLogic: MainViewControllerOutput {
+extension CurrencyBussinesLogic: MainViewControllerOutput {
     
     
 }
 
-extension ConsultaPersonalPresenter: CurrencyConverterBusinessLogicOutput {
+extension CurrencyPresenter: CurrencyBusinessLogicOutput {
     
     
 }
@@ -30,13 +30,11 @@ class CurrencyConverterConfigurator {
     class var sharedInstance: CurrencyConverterConfigurator {
         
         struct Static {
-            
             static var instance: CurrencyConverterConfigurator?
             static var token: dispatch_once_t = 0
         }
         
         dispatch_once(&Static.token) {
-            
             Static.instance = CurrencyConverterConfigurator()
         }
         
@@ -50,10 +48,10 @@ class CurrencyConverterConfigurator {
         //let router = NoticiasYEventosRouter()
         //router.viewController = viewController
         
-        let presenter = ConsultaPersonalPresenter()
+        let presenter = CurrencyPresenter()
         presenter.output = viewController
         
-        let interactor = CurrencyConverterBussinesLogic()
+        let interactor = CurrencyBussinesLogic()
         interactor.output = presenter
         
         viewController.output = interactor

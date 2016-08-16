@@ -20,7 +20,7 @@ protocol MainViewControllerInput {
 /* OUTPUT */
 protocol MainViewControllerOutput {
     
-    func convertCurrency(currencies:[Currency]?,value:Int?)
+    func convert(currencies:[Currency]?, value:Int?)
     func loadCurrencies()
 }
 
@@ -34,7 +34,7 @@ class MainViewController: UIViewController, MainViewControllerInput {
     @IBOutlet weak var currencyTextField: UITextField!
     @IBOutlet weak var currencyTableView: UITableView!
     
-    var output: CurrencyConverterBussinesLogic!
+    var output: CurrencyBussinesLogic!
     
     var currenciesList : [Currency]?
     var convertedCurrencies : [CurrencyDomain]?
@@ -74,6 +74,8 @@ class MainViewController: UIViewController, MainViewControllerInput {
     }
 }
 
+
+/* UITextFieldDelegate */
 extension MainViewController: UITextFieldDelegate {
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -88,11 +90,12 @@ extension MainViewController: UITextFieldDelegate {
         }
         
         let value = Int(currentText) ?? 0
-        self.output.convertCurrency(self.currenciesList, value: value)
+        self.output.convert(self.currenciesList, value: value)
         return newLength <= 16
     }
 }
 
+/* UITableViewDataSource  UITableViewDelegate */
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

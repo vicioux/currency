@@ -10,29 +10,32 @@ import Foundation
 
 
 /* OUTPUT */
-protocol CurrencyConverterPresenterOutput {
+protocol CurrencyPresenterOutput {
     func setCurrencies(currencies:[Currency])
     func showConversion(conversion:[CurrencyDomain])
     func showMessage(message: String)
 }
 
 /* INPUT */
-protocol CurrencyConverterPresenterInput {
+protocol CurrencyPresenterInput {
     func presentCurrencies(currencies:[Currency])
     func presentConversion(conversion:[CurrencyDomain])
     func presentMessage(message: String?)
 }
 
-class ConsultaPersonalPresenter : CurrencyConverterPresenterInput {
+class CurrencyPresenter : CurrencyPresenterInput {
     
-    var output: CurrencyConverterPresenterOutput!
+    var output: CurrencyPresenterOutput!
     
     func presentMessage(message: String?) {
         self.output.showMessage(message!)
     }
     
     func presentCurrencies(currencies: [Currency]) {
-        self.output.setCurrencies(currencies)
+        if currencies.count > 0 {
+           self.output.setCurrencies(currencies)
+           return
+        }
     }
     
     func presentConversion(conversion: [CurrencyDomain]) {

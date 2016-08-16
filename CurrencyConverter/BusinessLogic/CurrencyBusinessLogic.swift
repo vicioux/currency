@@ -9,29 +9,26 @@
 import Foundation
 
 /* INPUT */
-protocol CurrencyConverterBusinessLogicOutput {
-    
+protocol CurrencyBusinessLogicOutput {
     func presentCurrencies(currencies:[Currency])
     func presentConversion(conversion:[CurrencyDomain])
     func presentMessage(message: String?)
 }
 
 /* OUTPUT */
-protocol CurrencyConverterBusinessLogicInput {
-    
-    func convertCurrency(currencies:[Currency]?,value:Int?)
+protocol CurrencyBusinessLogicInput {
+    func convert(currencies:[Currency]?, value:Int?)
     func loadCurrencies()
 }
 
-class CurrencyConverterBussinesLogic : CurrencyConverterBusinessLogicInput {
+class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
     
-    
-    var output: CurrencyConverterBusinessLogicOutput!
+    var output: CurrencyBusinessLogicOutput!
     var repositoryLocator = RepositoryLocator().currencyRepository()
     
     func loadCurrencies() {
         repositoryLocator.findCurrencies { (success, fail) in
-            if(fail != nil) {
+            if (fail != nil) {
                 self.output.presentMessage(fail?.description)
             } else {
                 self.output.presentCurrencies(success)
@@ -39,10 +36,11 @@ class CurrencyConverterBussinesLogic : CurrencyConverterBusinessLogicInput {
         }
     }
     
-    func convertCurrency(currencies: [Currency]?, value: Int?) {
+    func convert(currencies: [Currency]?, value: Int?) {
         var convertedCurrencies = [CurrencyDomain]()
+        guard let currencies = currencies else { return }
         
-        for currency in currencies! {
+        for currency in currencies {
             convertedCurrencies.append(CurrencyDomain.init(keyName: currency.keyName, rate: getCurrencyConversion(currency, value: Double(value!))))
         }
         

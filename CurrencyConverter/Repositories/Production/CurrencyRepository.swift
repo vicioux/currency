@@ -13,6 +13,15 @@ class CurrencyRepository: ICurrencyRepository {
     
     static let sharedInstance = CurrencyRepository()
     
+    dynamic func isInternetReachable() -> Bool {
+        var reachable : Bool?
+        var reachability: Reachability
+        
+        do { reachability = try Reachability.reachabilityForInternetConnection(); reachable = reachability.isReachable() } catch {}
+        
+        return reachable!
+    }
+    
     class var sharedDispatchInstance: CurrencyRepository {
         
         struct Stactic {

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:CurrencyConverter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "60CD67A51D610718003BE9CA"
+               BuildableName = "CurrencyConverterTests.xctest"
+               BlueprintName = "CurrencyConverterTests"
+               ReferencedContainer = "container:CurrencyConverter.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
