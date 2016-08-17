@@ -12,7 +12,10 @@ class CurrencyDomain {
     
     var name : String? = ""
     var keyName : String?
+    
     var rate : String?
+    var rateValue: Double?
+    var initalRate: Double?
     var flag : String? = ""
     
     init(name: String? ,keyName: String?, rate: String?, flag: String?) {

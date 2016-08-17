@@ -32,17 +32,17 @@ class CurrencyBusinessLogicTest: XCTestCase {
         var showMensaje = false
         var showCurrency = false
         var showConvertedCurrency = false
-        var currenciesValue: [Currency]?
-        var conversionValue: [CurrencyDomain]?
+        var currencieListValues: [Currency]?
+        var conversionListValues: [CurrencyDomain]?
         
         func presentCurrencies(currencies:[Currency]) {
             showCurrency = true
-            currenciesValue = currencies
+            currencieListValues = currencies
         }
         
         func presentConversion(conversion:[CurrencyDomain]) {
             showConvertedCurrency = true
-            conversionValue = conversion
+            conversionListValues = conversion
         }
         
         func presentMessage(message: String?) {
@@ -50,8 +50,7 @@ class CurrencyBusinessLogicTest: XCTestCase {
         }
     }
     
-    class CurrencyRepositorioSpy: ICurrencyRepository
-    {
+    class CurrencyRepositorioSpy: ICurrencyRepository {
         // MARK: Method call expectations
         var hasCurrencyData = false
         var data = [Currency]()
@@ -66,29 +65,15 @@ class CurrencyBusinessLogicTest: XCTestCase {
          
     }
     
-    func testShouldReturnCurrencies()
-    {
-        // Given
+    func givenTest() -> (repositorySpy: CurrencyRepositorioSpy, currencyBusinessOutputSpy: CurrencyBusinessOutputSpy) {
         let currencyBusinessOutputSpy = CurrencyBusinessOutputSpy()
         testSubject.output = currencyBusinessOutputSpy
         let repositorySpy = CurrencyRepositorioSpy()
         testSubject.repositoryLocator = repositorySpy
-        // When
-        testSubject.loadCurrencies()
-        
-        // Then
-        XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
+        return (repositorySpy, currencyBusinessOutputSpy)
     }
     
-    func testShouldPresentConversion()
-    {
-        // Given
-        let currencyBusinessOutputSpy = CurrencyBusinessOutputSpy()
-        testSubject.output = currencyBusinessOutputSpy
-        let repositorySpy = CurrencyRepositorioSpy()
-        testSubject.repositoryLocator = repositorySpy
-        
-        // When
+    func getCurrenciesMock() -> [Currency] {
         var currencies = [Currency]()
         
         let sterlingCurrency = Currency(keyName:"GBP", rate:0.7712)
@@ -100,6 +85,27 @@ class CurrencyBusinessLogicTest: XCTestCase {
         currencies.append(euroCurrency)
         currencies.append(yenCurrency)
         currencies.append(brazilRealCurrency)
+        
+        return currencies
+    }
+    
+    func testShouldReturnCurrencies() {
+        // Given
+        let (repositorySpy, _) = givenTest()
+        
+        // When
+        testSubject.loadCurrencies()
+        
+        // Then
+        XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
+    }
+    
+    func testShouldPresentConversion() {
+        // Given
+        let (_, currencyBusinessOutputSpy) = givenTest()
+        
+        // When
+        let currencies = getCurrenciesMock()
         
         testSubject.convert(currencies, value: 5)
         // Then
@@ -107,33 +113,42 @@ class CurrencyBusinessLogicTest: XCTestCase {
     }
     
     
-    func testShoulLoadCurrencies(){
+    func testShouldLoadCurrencies() {
         // Given
-        let currencyBusinessOutputSpy = CurrencyBusinessOutputSpy()
-        testSubject.output = currencyBusinessOutputSpy
-        let repositorySpy = CurrencyRepositorioSpy()
-        testSubject.repositoryLocator = repositorySpy
+        let (repositorySpy, currencyBusinessOutputSpy) = givenTest()
         
         // When
-        
-        var currencies = [Currency]()
-        
-        let sterlingCurrency = Currency(keyName:"GBP", rate:0.7712)
-        let euroCurrency = Currency(keyName:"EUR", rate:0.89622)
-        let yenCurrency = Currency(keyName:"JPY", rate:101.96)
-        let brazilRealCurrency = Currency(keyName:"BRL", rate:3.1625)
-        
-        currencies.append(sterlingCurrency)
-        currencies.append(euroCurrency)
-        currencies.append(yenCurrency)
-        currencies.append(brazilRealCurrency)
+        let currencies = getCurrenciesMock()
         
         repositorySpy.data = currencies
         testSubject.loadCurrencies()
         
         // Then
         XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
-        XCTAssertEqual(currencyBusinessOutputSpy.currenciesValue!.count, 4, "it mys return 4 currencies from service")
+        XCTAssertEqual(currencyBusinessOutputSpy.currencieListValues!.count, 4, "it must return 4 currencies from service")
+    }
+    
+    
+    func testShouldConvertCurrencies() {
+        // Given
+        let (repositorySpy, currencyBusinessOutputSpy) = givenTest()
+        
+        // When
+        let currencies = getCurrenciesMock()
+        
+        let testValue = 100
+        
+        repositorySpy.data = currencies
+        testSubject.convert(currencies, value: testValue)
+        
+        if let convertedList = currencyBusinessOutputSpy.conversionListValues {
+            for convertedItem in convertedList {
+                XCTAssertEqual(convertedItem.rateValue, convertedItem.initalRate! * Double(testValue) , "Presenting fetched converted currency should properly convert the rate value")
+            }
+        }
+        
+        // Then
+        XCTAssertEqual(currencyBusinessOutputSpy.conversionListValues!.count, currencies.count, "it must convert same number of currencies")
     }
     
     override func tearDown() {
@@ -141,16 +156,5 @@ class CurrencyBusinessLogicTest: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }

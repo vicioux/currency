@@ -49,18 +49,25 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
         guard let value = value else { return }
         
         for currency in currencies {
-            let currencyValue = getCurrencyConversion(currency, value: Double(value))
+            let calculatedCurrency = getCurrencyConversion(currency.rate, value: value)
             let currencyInfo = getCurrencyInfoBy(currency.keyName!)
             
+            let currencyValue = FormatHelper.formattedCurrency(calculatedCurrency, symbol: currencyInfo.symbol!)
             let currencyDomain = CurrencyDomain(name: currencyInfo.name ,keyName: currency.keyName, rate: currencyValue, flag: currencyInfo.flag)
+            currencyDomain.rateValue = calculatedCurrency
+            currencyDomain.initalRate = currency.rate
+            
             convertedCurrencies.append(currencyDomain)
         }
         
         self.output.presentConversion(convertedCurrencies)
     }
     
-    func getCurrencyConversion(currency: Currency, value: Double?) -> String {
-        return FormatHelper.formattedCurrency(currency.rate! * Double(value ?? 0), symbol: getCurrencyInfoBy(currency.keyName!).symbol!)
+    func getCurrencyConversion(rate: Double?, value: Int?) -> Double {
+        guard let newRate = rate else { return Double(0.0) }
+        guard let newValue = value else { return Double(0.0) }
+        
+        return newRate * Double(newValue)
     }
     
     func getCurrencyInfoBy(key: String) -> CurrencyInfo {
