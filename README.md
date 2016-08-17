@@ -5,5 +5,6 @@ this architecture is more about Protocol Oriented Programing
 
 Used libraries:
 * Haneke (https://github.com/Haneke/HanekeSwift)
+* BRYXBanner (https://github.com/bryx-inc/BRYXBanner)
 
 Pd: just open CurrencyConverter.xcworkspace

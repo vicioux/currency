@@ -52,6 +52,7 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
             let calculatedCurrency = getCurrencyConversion(currency.rate, value: value)
             let currencyInfo = getCurrencyInfoBy(currency.keyName!)
             
+            //by effects of the proof i made this format in business logic but i know i could be in the presenter.
             let currencyValue = FormatHelper.formattedCurrency(calculatedCurrency, symbol: currencyInfo.symbol!)
             let currencyDomain = CurrencyDomain(name: currencyInfo.name ,keyName: currency.keyName, rate: currencyValue, flag: currencyInfo.flag)
             currencyDomain.rateValue = calculatedCurrency

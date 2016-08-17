@@ -1,12 +1,17 @@
 PODS:
+  - BRYXBanner (0.5.2):
+    - BRYXBanner/Core (= 0.5.2)
+  - BRYXBanner/Core (0.5.2)
   - HanekeSwift (0.10.1)
 
 DEPENDENCIES:
+  - BRYXBanner
   - HanekeSwift
 
 SPEC CHECKSUMS:
+  BRYXBanner: 5f0911d52e0a77e088f7ea7ddcdebd02afb7828a
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
 
-PODFILE CHECKSUM: 0ffe0db0daeb2ddc1b449ce03a9295e73b65b5e6
+PODFILE CHECKSUM: 5709cbc0df1839069e7ff803015ec56bf874ceed
 
 COCOAPODS: 1.1.0.beta.1

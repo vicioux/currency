@@ -4,10 +4,10 @@ use_frameworks!
 def default_pods
 	# cache data
     # https://github.com/Haneke/HanekeSwift
-	pod 'HanekeSwift',
+	pod 'HanekeSwift'
     # object mapper
-    # https://github.com/Hearst-DD/ObjectMapper
-    pod 'ObjectMapper'
+    # https://github.com/bryx-inc/BRYXBanner
+    pod 'BRYXBanner'
 end
 
 target 'CurrencyConverter' do
