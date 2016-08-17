@@ -45,7 +45,7 @@ class CurrencyBusinessLogicTest: XCTestCase {
             conversionListValues = conversion
         }
         
-        func presentMessage(message: String?) {
+        func presentMessage(message: NSError) {
             showMessage = true
         }
     }

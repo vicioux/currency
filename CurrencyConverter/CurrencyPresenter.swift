@@ -20,15 +20,16 @@ protocol CurrencyPresenterOutput {
 protocol CurrencyPresenterInput {
     func presentCurrencies(currencies:[Currency])
     func presentConversion(conversion:[CurrencyDomain])
-    func presentMessage(message: String?)
+    func presentMessage(message: NSError)
 }
 
 class CurrencyPresenter : CurrencyPresenterInput {
     
     var output: CurrencyPresenterOutput!
     
-    func presentMessage(message: String?) {
-        self.output.showMessage(message!)
+    func presentMessage(message: NSError) {
+        let error = CustomError.ErrorFrom(message)
+        self.output.showMessage(error.description)
     }
     
     func presentCurrencies(currencies: [Currency]) {

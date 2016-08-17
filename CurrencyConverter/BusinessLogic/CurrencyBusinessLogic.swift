@@ -12,7 +12,7 @@ import Foundation
 protocol CurrencyBusinessLogicOutput {
     func presentCurrencies(currencies:[Currency])
     func presentConversion(conversion:[CurrencyDomain])
-    func presentMessage(message: String?)
+    func presentMessage(message: NSError)
 }
 
 /* INPUT */
@@ -36,7 +36,7 @@ class CurrencyBussinesLogic : CurrencyBusinessLogicInput {
     func loadCurrencies() {
         repositoryLocator.findCurrencies { (success, fail) in
             if (fail != nil) {
-                self.output.presentMessage(fail?.description)
+                self.output.presentMessage(fail!)
             } else {
                 self.output.presentCurrencies(success)
             }

@@ -74,7 +74,7 @@ class MainViewController: UIViewController, MainViewControllerInput {
     }
     
     func showMessage(message: String) {
-        AppNotification.show(nil, subtitle: message)
+        AppNotification.show(nil, subtitle: message, type:NotificationType.Error.color)
     }
     
     func textFieldDidChange(textField: UITextField) {
