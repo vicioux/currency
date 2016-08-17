@@ -9,76 +9,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CurrencyConverter/Repositories/Production/CurrencyRepository.swift"
-            timestampString = "493010419.349688"
+            filePath = "CurrencyConverter/Controllers/MainViewController.swift"
+            timestampString = "493096966.095147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "findCurrencies(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CurrencyConverter/Repositories/Production/CurrencyRepository.swift"
-            timestampString = "493010428.258434"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "findCurrencies(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CurrencyConverter/Repositories/Production/CurrencyRepository.swift"
-            timestampString = "493010429.220957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "findCurrencies(_:)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "showMessage(_:)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CurrencyConverter.CurrencyRepository.findCurrencies ((success : Swift.ImplicitlyUnwrappedOptional&lt;Swift.Array&lt;CurrencyConverter.Currency&gt;&gt;, fail : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "CurrencyConverter.MainViewController.showMessage (Swift.String) -&gt; ()"
                   moduleName = "CurrencyConverter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/SergioOrozco/Developer/Exercises/currencyConverterv2/CurrencyConverter/Repositories/Production/CurrencyRepository.swift"
-                  timestampString = "493039166.23633"
+                  urlString = "file:///Users/SergioOrozco/Developer/Exercises/currencyConverterv2/CurrencyConverter/Controllers/MainViewController.swift"
+                  timestampString = "493096973.68055"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "36">
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "35">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "protocol witness for CurrencyConverter.ICurrencyRepository.findCurrencies ((success : Swift.ImplicitlyUnwrappedOptional&lt;Swift.Array&lt;CurrencyConverter.Currency&gt;&gt;, fail : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; () in conformance CurrencyConverter.CurrencyRepository : CurrencyConverter.ICurrencyRepository in CurrencyConverter"
+                  symbolName = "protocol witness for CurrencyConverter.CurrencyPresenterOutput.showMessage (Swift.String) -&gt; () in conformance CurrencyConverter.MainViewController : CurrencyConverter.CurrencyPresenterOutput in CurrencyConverter"
                   moduleName = "CurrencyConverter"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/SergioOrozco/Developer/Exercises/currencyConverterv2/CurrencyConverter/Repositories/Production/CurrencyRepository.swift"
-                  timestampString = "493039166.236452"
+                  urlString = "file:///Users/SergioOrozco/Developer/Exercises/currencyConverterv2/CurrencyConverter/Controllers/MainViewController.swift"
+                  timestampString = "493096973.680783"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>

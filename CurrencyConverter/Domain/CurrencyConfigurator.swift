@@ -15,11 +15,9 @@ extension MainViewController: CurrencyPresenterOutput {
 
 extension CurrencyBussinesLogic: MainViewControllerOutput {
     
-    
 }
 
 extension CurrencyPresenter: CurrencyBusinessLogicOutput {
-    
     
 }
 

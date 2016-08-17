@@ -8,14 +8,14 @@
 
 import Foundation
 
-/* INPUT */
+/* OUTPUT */
 protocol CurrencyBusinessLogicOutput {
     func presentCurrencies(currencies:[Currency])
     func presentConversion(conversion:[CurrencyDomain])
     func presentMessage(message: String?)
 }
 
-/* OUTPUT */
+/* INPUT */
 protocol CurrencyBusinessLogicInput {
     func convert(currencies:[Currency]?, value:Int?)
     func loadCurrencies()

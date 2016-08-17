@@ -32,13 +32,17 @@ class CurrencyBusinessLogicTest: XCTestCase {
         var showMensaje = false
         var showCurrency = false
         var showConvertedCurrency = false
+        var currenciesValue: [Currency]?
+        var conversionValue: [CurrencyDomain]?
         
         func presentCurrencies(currencies:[Currency]) {
             showCurrency = true
+            currenciesValue = currencies
         }
         
         func presentConversion(conversion:[CurrencyDomain]) {
             showConvertedCurrency = true
+            conversionValue = conversion
         }
         
         func presentMessage(message: String?) {
@@ -74,6 +78,62 @@ class CurrencyBusinessLogicTest: XCTestCase {
         
         // Then
         XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
+    }
+    
+    func testShouldPresentConversion()
+    {
+        // Given
+        let currencyBusinessOutputSpy = CurrencyBusinessOutputSpy()
+        testSubject.output = currencyBusinessOutputSpy
+        let repositorySpy = CurrencyRepositorioSpy()
+        testSubject.repositoryLocator = repositorySpy
+        
+        // When
+        var currencies = [Currency]()
+        
+        let sterlingCurrency = Currency(keyName:"GBP", rate:0.7712)
+        let euroCurrency = Currency(keyName:"EUR", rate:0.89622)
+        let yenCurrency = Currency(keyName:"JPY", rate:101.96)
+        let brazilRealCurrency = Currency(keyName:"BRL", rate:3.1625)
+        
+        currencies.append(sterlingCurrency)
+        currencies.append(euroCurrency)
+        currencies.append(yenCurrency)
+        currencies.append(brazilRealCurrency)
+        
+        testSubject.convert(currencies, value: 5)
+        // Then
+        XCTAssert(currencyBusinessOutputSpy.showConvertedCurrency, "should return data from the API.")
+    }
+    
+    
+    func testShoulLoadCurrencies(){
+        // Given
+        let currencyBusinessOutputSpy = CurrencyBusinessOutputSpy()
+        testSubject.output = currencyBusinessOutputSpy
+        let repositorySpy = CurrencyRepositorioSpy()
+        testSubject.repositoryLocator = repositorySpy
+        
+        // When
+        
+        var currencies = [Currency]()
+        
+        let sterlingCurrency = Currency(keyName:"GBP", rate:0.7712)
+        let euroCurrency = Currency(keyName:"EUR", rate:0.89622)
+        let yenCurrency = Currency(keyName:"JPY", rate:101.96)
+        let brazilRealCurrency = Currency(keyName:"BRL", rate:3.1625)
+        
+        currencies.append(sterlingCurrency)
+        currencies.append(euroCurrency)
+        currencies.append(yenCurrency)
+        currencies.append(brazilRealCurrency)
+        
+        repositorySpy.data = currencies
+        testSubject.loadCurrencies()
+        
+        // Then
+        XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
+        XCTAssertEqual(currencyBusinessOutputSpy.currenciesValue!.count, 4, "it mys return 4 currencies from service")
     }
     
     override func tearDown() {
