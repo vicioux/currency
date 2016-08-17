@@ -29,7 +29,7 @@ class CurrencyBusinessLogicTest: XCTestCase {
     
     class CurrencyBusinessOutputSpy: CurrencyBusinessLogicOutput {
         
-        var showMensaje = false
+        var showMessage = false
         var showCurrency = false
         var showConvertedCurrency = false
         var currencieListValues: [Currency]?
@@ -46,14 +46,14 @@ class CurrencyBusinessLogicTest: XCTestCase {
         }
         
         func presentMessage(message: String?) {
-            showMensaje = true
+            showMessage = true
         }
     }
     
     class CurrencyRepositorioSpy: ICurrencyRepository {
         // MARK: Method call expectations
         var hasCurrencyData = false
-        var data = [Currency]()
+        var data: [Currency]?
         var error: NSError?
         
         // MARK: Spied methods
@@ -89,7 +89,7 @@ class CurrencyBusinessLogicTest: XCTestCase {
         return currencies
     }
     
-    func testShouldReturnCurrencies() {
+    func testShouldPresentCurrencies() {
         // Given
         let (repositorySpy, _) = givenTest()
         
@@ -109,9 +109,8 @@ class CurrencyBusinessLogicTest: XCTestCase {
         
         testSubject.convert(currencies, value: 5)
         // Then
-        XCTAssert(currencyBusinessOutputSpy.showConvertedCurrency, "should return data from the API.")
+        XCTAssert(currencyBusinessOutputSpy.showConvertedCurrency, "should convert the data")
     }
-    
     
     func testShouldLoadCurrencies() {
         // Given
@@ -119,13 +118,25 @@ class CurrencyBusinessLogicTest: XCTestCase {
         
         // When
         let currencies = getCurrenciesMock()
-        
         repositorySpy.data = currencies
         testSubject.loadCurrencies()
         
         // Then
         XCTAssert(repositorySpy.hasCurrencyData, "should return data from the API.")
         XCTAssertEqual(currencyBusinessOutputSpy.currencieListValues!.count, 4, "it must return 4 currencies from service")
+    }
+    
+    func testShouldPresentMessage() {
+        // Given
+        let (repositorySpy, currencyBusinessOutputSpy) = givenTest()
+        
+        // When
+        repositorySpy.data = nil
+        repositorySpy.error = NSError(domain: "CurrencyConverter", code: 1, userInfo: [NSLocalizedDescriptionKey: "this could be any kind of error that must be presented"])
+        testSubject.loadCurrencies()
+        
+        // Then
+        XCTAssert(currencyBusinessOutputSpy.showMessage, "error message must be showed")
     }
     
     
@@ -135,7 +146,6 @@ class CurrencyBusinessLogicTest: XCTestCase {
         
         // When
         let currencies = getCurrenciesMock()
-        
         let testValue = 100
         
         repositorySpy.data = currencies
